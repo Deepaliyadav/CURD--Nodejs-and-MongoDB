@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+
+    <main>
+        <h3><a class="btn btn-secondary" href="/employee/add-employee"><i class="fa fa-plus"></i> Create New</a> Employee List</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>City</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <% if (list.length > 0) { %>
+                <tbody>
+                    <% for (let emp of list) { %>
+                    <tr>
+                        <td><%= emp.fullName %></td>
+                        <td><%= emp.email %></td>
+                        <td><%= emp.mobile %></td>
+                        <td><%= emp.city %></td>
+                        <td>
+                            <a href="/employee/edit-employee/<%= emp._id %>?edit=true"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                            <a href="/employee/delete-employee/<%= emp._id %>"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    <% } %>  
+                </tbody>
+            <% } else { %>
+                <h3>No Recods Found!</h3>
+                <% } %>
+        </table>
+    </main>
+    <%- include('../includes/end.ejs') %>
